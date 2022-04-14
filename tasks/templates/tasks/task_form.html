@@ -7,9 +7,6 @@
       <p class="h5">{{ field.label }}:</p>
       <p>{{ field }}</p>
     {% endfor %}
-    <!-- {{ form.text }}
-    {{ form.priority }}
-    {{ form.deadline }} -->
     <button type="submit" class="btn btn-primary my-5">Submit</button>
     <a href="{% url 'tasks_list' %}" class="btn btn-secondary">Cancel</a>
 </form>

@@ -7,7 +7,7 @@ from .forms import TaskForm
 
 class TaskListView(LoginRequiredMixin, ListView):
     model = Task
-    paginate_by = 2
+    paginate_by = 5
     template_name = "tasks/tasks_list.html"
     login_url = '/login'
 

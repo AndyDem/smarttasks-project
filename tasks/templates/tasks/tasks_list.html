@@ -2,20 +2,30 @@
 
 {% block body %}
   <h1>Your tasks:</h1>
-  <div class="row row-cols-2 g-2">
+  <div class="row row-cols-1">
       {% for task in page_obj %}
         <div class="col">
-            <div class="p-3 border">
-                <p>{{ task.text }}</p>
+          <div class="p-3 border">
+            <div class="row row-cols-3">
+              <div class="col align-self-center">
+                <h5>{{ task.text|wordwrap:5 }}</h5>
+              </div>
+              <div class="col align-self-center">
                 {% if task.deadline is not None %}
-                <p>{{ task.deadline }}</p>
+                  <p>{{ task.deadline|timeuntil }} left till deadline: {{ task.deadline }}</p>
+                {% else %}
+                  <p>No deadline set.</p>
                 {% endif %}
                 {% if task.priority is not None %}
-                <p>{{ task.get_priority_display }}</p>
+                  <p>Priority: {{ task.get_priority_display }}</p>
                 {% endif %}
-                <a href="{% url 'tasks_update' pk=task.id %}" class="btn btn-secondary">Edit</a>
+              </div>
+              <div class="col align-self-center">
+                <a href="{% url 'tasks_update' pk=task.id %}" class="btn btn-secondary ">Edit</a>
                 <a href="{% url 'tasks_delete' pk=task.id %}" class="btn btn-danger">Delete</a>
+              </div>
             </div>
+          </div>  
         </div>
       {% endfor %}
   </div>

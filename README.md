@@ -9,7 +9,7 @@ ____
 * Form.errors
 * Days left till deadline
 * Authentication templates
-* Task list template
+* Make task.text limited by template
 * Notifications
 * Modal forms
 * Tests
