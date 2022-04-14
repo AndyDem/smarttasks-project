@@ -7,12 +7,13 @@ from .forms import TaskForm
 
 class TaskListView(LoginRequiredMixin, ListView):
     model = Task
+    paginate_by = 2
     template_name = "tasks/tasks_list.html"
-    context_object_name = 'tasks'
     login_url = '/login'
 
     def get_queryset(self):
-        tasks = Task.objects.filter(user=self.request.user)
+        tasks = Task.objects.filter(user=self.request.user) \
+            .order_by('priority','deadline').reverse()
         return tasks
 
 

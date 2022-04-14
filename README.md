@@ -6,8 +6,8 @@
 * Get the list of personal tasks
 ____
 # ToDo
-* Pagination
 * Form.errors
+* Days left till deadline
 * Authentication templates
 * Task list template
 * Notifications
