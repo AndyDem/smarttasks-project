@@ -7,8 +7,7 @@
 ____
 # ToDo
 * Pagination
-* Priority field for task
-* Deadline field for task
+* Form.errors
 * Authentication templates
 * Task list template
 * Notifications

@@ -6,7 +6,10 @@
       {% for task in tasks %}
         <div class="col">
             <div class="p-3 border">
-                {{ task.text }}
+                <p>{{ task.text }}</p>
+                {% if task.deadline is not None %}
+                <p>{{ task.deadline }}</p>
+                {% endif %}
                 <a href="{% url 'tasks_update' pk=task.id %}" class="btn btn-secondary">Edit</a>
                 <a href="{% url 'tasks_delete' pk=task.id %}" class="btn btn-danger">Delete</a>
             </div>
