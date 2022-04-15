@@ -2,8 +2,7 @@ from datetime import datetime
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import UserCreationForm
-from users.forms import CustomAuthenicationForm
+from users.forms import CustomAuthenicationForm, CustomUserCreationForm
 
 
 class HomeView(TemplateView):
@@ -12,7 +11,7 @@ class HomeView(TemplateView):
 
 
 class SignupView(CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = 'users/signup.html'
     success_url = '/smart/tasks'
 

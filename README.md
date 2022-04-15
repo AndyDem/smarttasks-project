@@ -8,7 +8,6 @@ ____
 # ToDo
 * Form.errors
 * Days left till deadline
-* Authentication templates
 * Make task.text limited by template
 * Notifications
 * Modal forms

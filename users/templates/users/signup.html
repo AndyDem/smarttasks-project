@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <form method='post' style='text-align: left; margin: 0 auto; width: 600px;'>
-        {% csrf_token %}
-        {{form.as_p}}
-        <input class='btn btn-secondary' type='submit' name='Submit' value="Signup">
-    </form>
+<h3 class="mb-3 fw-normal">Please provide the following info to sign up</h3>
+<div class="row row-cols-2 justify-content-center">
+    <div class="col">
+        <form method='post'>
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field }}
+            {% endfor %}
+            <input type='submit' class="btn btn-secondary mt-2" value="Signup">
+        </form>
+    </div>
+</div>
+{% if form.errors %}
+    <div class="alert alert-danger mt-2">
+        {% for field in form %}
+            {% for error in field.errors %}
+                <h6 class="fw-normal">{{ error }}</h6>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}
