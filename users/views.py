@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
+from users.forms import CustomAuthenicationForm
 
 
 class HomeView(TemplateView):
@@ -21,6 +22,7 @@ class SignupView(CreateView):
         return super().get(request, *args, **kwargs)
 
 class LoginInterfaceView(LoginView):
+    form_class = CustomAuthenicationForm
     template_name = 'users/login.html'
 
 

@@ -8,7 +8,7 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ('text', 'priority', 'deadline')
         widgets = {
-            'text': forms.Textarea(attrs={'class': 'form-control'}),
+            'text': forms.Textarea(attrs={'autofocus': True, 'class': 'form-control'}),
             'priority': forms.Select(choices=Task.PRIORITY)
         }
         labels = {

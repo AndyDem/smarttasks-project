@@ -2,7 +2,6 @@ from datetime import datetime
 from django.test import TestCase
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
 from tasks.forms import TaskForm
 from tasks.models import Task
 
@@ -34,7 +33,7 @@ class UnitTestCase(TestCase):
 
     def test_user_object(self):
         user = self.create_user()
-        pulled_user = User.objects.get(username='testuser')
+        pulled_user = User.objects.get(username=user.username)
         self.assertEqual(user, pulled_user)
 
     def test_task_form(self):

@@ -13,7 +13,7 @@ class TaskListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         tasks = Task.objects.filter(user=self.request.user) \
-            .order_by('priority','deadline').reverse()
+            .order_by('priority', 'deadline').reverse()
         return tasks
 
 
