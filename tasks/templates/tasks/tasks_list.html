@@ -8,7 +8,7 @@
           <div class="p-3 border">
             <div class="row row-cols-3">
               <div class="col align-self-center">
-                <h5>{{ task.text|wordwrap:5 }}</h5>
+                <h5>{{ task.text }}</h5>
               </div>
               <div class="col align-self-center">
                 {% if task.deadline is not None %}
@@ -29,21 +29,19 @@
         </div>
       {% endfor %}
   </div>
-  <div class="row mt-3">
-    <span>
-        {% if page_obj.has_previous %}
-            <a class="btn btn-secondary" href="?page=1">&laquo; first</a>
-            <a class="btn btn-secondary" href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+  <div class="btn-group mt-4">
+      {% if page_obj.has_previous %}
+          <a class="btn btn-secondary" href="?page=1">&laquo; first</a>
+          <a class="btn btn-secondary" href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
 
-        <span class="btn btn-secondary">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
+      <span class="btn btn-secondary">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
 
-        {% if page_obj.has_next %}
-            <a class="btn btn-secondary" href="?page={{ page_obj.next_page_number }}">next</a>
-            <a class="btn btn-secondary" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
+      {% if page_obj.has_next %}
+          <a class="btn btn-secondary" href="?page={{ page_obj.next_page_number }}">next</a>
+          <a class="btn btn-secondary" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
   </div>
 {% endblock %}
