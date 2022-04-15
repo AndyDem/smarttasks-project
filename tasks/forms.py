@@ -3,16 +3,22 @@ from .models import Task
 
 
 class TaskForm(forms.ModelForm):
-    deadline = forms.DateTimeField(required=False, widget=forms.SelectDateWidget())
+    deadline = forms.DateTimeField(
+        required=False,
+        widget=forms.SelectDateWidget()
+    )
+
     class Meta:
         model = Task
         fields = ('text', 'priority', 'deadline')
         widgets = {
-            'text': forms.Textarea(attrs={'autofocus': True, 'class': 'form-control'}),
+            'text': forms.Textarea(
+                attrs={'autofocus': True, 'class': 'form-control'}
+            ),
             'priority': forms.Select(choices=Task.PRIORITY)
         }
         labels = {
             'text': 'Enter your task here',
-            'priority':'Priority',
-            'deadline':'Deadline'
+            'priority': 'Priority',
+            'deadline': 'Deadline'
         }

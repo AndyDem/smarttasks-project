@@ -20,6 +20,7 @@ class SignupView(CreateView):
             return redirect(self.get_success_url())
         return super().get(request, *args, **kwargs)
 
+
 class LoginInterfaceView(LoginView):
     form_class = CustomAuthenicationForm
     template_name = 'users/login.html'
