@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import redirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,9 +12,16 @@ class TaskListView(LoginRequiredMixin, ListView):
     template_name = "tasks/tasks_list.html"
     login_url = '/login'
 
+    def post(self, *args, **kwargs):
+        id = self.request.POST.get('change_state')
+        task = Task.objects.get(pk=id)
+        task.done = not task.done
+        task.save()
+        return self.get(self.request, *args, **kwargs)
+
     def get_queryset(self):
         tasks = Task.objects.filter(user=self.request.user) \
-            .order_by('priority', 'deadline').reverse()
+            .order_by('done', '-priority', 'deadline')
         return tasks
 
 

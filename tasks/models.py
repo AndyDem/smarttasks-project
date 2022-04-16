@@ -15,6 +15,7 @@ class Task(models.Model):
     created = models.DateField(auto_now_add=True)
     priority = models.SmallIntegerField(default=0, choices=PRIORITY)
     deadline = models.DateField(null=True)
+    done = models.BooleanField(default=False)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

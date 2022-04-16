@@ -19,10 +19,15 @@
   </div>
   <div class="row row-cols-1 mt-4">
       {% for task in page_obj %}
-        <div class="col">
+        <div class="col {% if task.done %} text-muted {% endif %}">
           <div class="p-3 border">
             <div class="row row-cols-3">
               <div class="col align-self-center">
+                <form method="post" id="done_form">
+                  {% csrf_token %}
+                  <input type="checkbox" onchange="submit();" {% if task.done %} checked {% endif %}>
+                  <input type="hidden" name="change_state" value="{{ task.id }}">
+                </form>
                 <h5>{{ task.text }}</h5>
               </div>
               <div class="col align-self-center">

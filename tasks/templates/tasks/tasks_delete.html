@@ -3,8 +3,8 @@
 {% block body %}
 <form method="post">
     {% csrf_token %}
-    <p>Are you sure you want to delete "{{ task.text }}"?</p>
-    <p>This action can't be undone</p>
-    <input type="submit" class="btn btn-danger" value="Confirm">
+    <h5>Are you sure you want to delete "{{ task.text }}"?</h5>
+    <h5>This action can't be undone</h5>
+    <input type="submit" class="btn btn-danger mt-2" value="Confirm">
 </form>
 {% endblock %}
