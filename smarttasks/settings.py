@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from celery.schedules import crontab
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #apps
+    # apps
     'users',
     'tasks'
 ]
@@ -129,3 +131,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/smart/tasks'
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", 'amqp://localhost')
+CELERY_BEAT_SCHEDULE = {
+    'send_deadline_notification': {
+        'task': 'tasks.tasks.send_deadline_notification',
+        'schedule': crontab(day_of_month='*/1'),
+    },
+}
+EMAIL_BACKEND = os.environ.get(
+    "EMAIL_BACKEND", "sendgrid_backend.SendgridBackend")
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "Your SendGrid API Key")
+SENDGRID_SANDBOX_MODE_IN_DEBUG = True

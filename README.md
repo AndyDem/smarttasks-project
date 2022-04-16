@@ -4,10 +4,11 @@
 * Sign up, log in and log out
 * Create, edit and delete tasks
 * Get the list of personal tasks
+* Get email notification about deadline
 ____
 ## To start project with Docker use:
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
 ## To run tests in Docker:
 ```
@@ -17,5 +18,4 @@ ____
 # ToDo
 * Days left till deadline
 * Make task.text limited by template
-* Notifications
 * Modal forms

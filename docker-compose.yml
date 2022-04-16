@@ -5,3 +5,36 @@ services:
     ports:
       - "8000:8000"
     image: smarttasks_project
+    env_file:
+      - ./.env.dev
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: on-failure
+
+  celery_worker:
+    build: .
+    command: celery -A tasks.celery worker -B
+    links:
+      - rabbitmq
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - web
+      - rabbitmq
+    image: smarttasks_project
+
+  celery_beat:
+    build: .
+    command: celery -A tasks.celery beat
+    links:
+      - rabbitmq
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - web
+      - rabbitmq
+    image: smarttasks_project
