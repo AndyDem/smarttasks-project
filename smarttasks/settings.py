@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'widget_tweaks',
+    'bootstrap_modal_forms',
+
     # apps
     'users',
     'tasks'
@@ -131,6 +134,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/smart/tasks'
+LOGOUT_REDIRECT_URL = '/'
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", 'amqp://localhost')
 CELERY_BEAT_SCHEDULE = {
     'send_deadline_notification': {

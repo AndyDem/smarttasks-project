@@ -21,16 +21,18 @@
       {% for task in page_obj %}
         <div class="col {% if task.done %} text-muted {% endif %}">
           <div class="p-3 border">
-            <div class="row row-cols-3">
-              <div class="col align-self-center">
+            <div class="row row-cols-12">
+              <div class="col-1 align-self-center">
                 <form method="post" id="done_form">
                   {% csrf_token %}
-                  <input type="checkbox" onchange="submit();" {% if task.done %} checked {% endif %}>
+                  <input type="checkbox" class="form-check-input" onchange="submit();" {% if task.done %} checked {% endif %}>
                   <input type="hidden" name="change_state" value="{{ task.id }}">
                 </form>
-                <h5>{{ task.text }}</h5>
               </div>
-              <div class="col align-self-center">
+              <div class="col-6 align-self-center text-wrap text-break">
+                <h5 class="fw-normal">{{ task.text }}</h6>
+              </div>
+              <div class="col-3 align-self-center">
                 {% if task.deadline is not None %}
                   <p>{{ task.deadline|timeuntil }} left till deadline: {{ task.deadline }}</p>
                 {% else %}
@@ -40,9 +42,9 @@
                   <p>Priority: {{ task.get_priority_display }}</p>
                 {% endif %}
               </div>
-              <div class="col align-self-center">
-                <a href="{% url 'tasks_update' pk=task.id %}" class="btn btn-secondary ">Edit</a>
-                <a href="{% url 'tasks_delete' pk=task.id %}" class="btn btn-danger">Delete</a>
+              <div class="col-2 align-self-center">
+                <a href="{% url 'tasks_update' pk=task.id %}" class="update-task-btn btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
+                <a href="{% url 'tasks_delete' pk=task.id %}" class="delete-task-btn btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>
               </div>
             </div>
           </div>  

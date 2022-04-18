@@ -3,6 +3,9 @@
 {% block body %}
     <h1>Welcome to SmartTasks!</h1>
     <h2>Today is: {{ today }}</h2>
-    <br>
-    <a href="{% url 'tasks_list'%}" class="btn btn-outline-dark me-1">Go to your tasks!</a>
+    {% if user.is_anonymous %}
+        <button class="login-btn btn btn-outline-dark mt-2">Go to your tasks!</button>
+    {% else %}
+        <a href="{% url 'tasks_list' %}" class="btn btn-outline-dark mt-2">Go to your tasks!</a>
+    {% endif %}
 {% endblock %}
